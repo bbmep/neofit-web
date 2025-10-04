@@ -1,0 +1,347 @@
+/* AI教練頁面樣式 */
+.coach-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    height: calc(100vh - 180px);
+    min-height: 500px;
+}
+
+/* 側邊欄樣式 */
+.coach-sidebar {
+    background: rgba(20, 20, 30, 0.8);
+    border: 1px solid var(--neon-blue);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    box-shadow: 0 0 15px rgba(0, 195, 255, 0.2);
+}
+
+.coach-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 195, 255, 0.3);
+}
+
+.coach-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    padding: 3px;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.coach-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #1a1a2e;
+}
+
+.coach-avatar::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, var(--neon-blue), transparent 30%);
+    animation: rotate 4s linear infinite;
+}
+
+.coach-profile h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--neon-blue);
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba(0, 195, 255, 0.7);
+}
+
+.coach-profile p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.coach-topics h4 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.topic-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.topic-btn {
+    background: rgba(30, 30, 45, 0.8);
+    border: 1px solid var(--dark-accent);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    color: var(--text-color);
+    text-align: left;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.topic-btn:hover {
+    background: rgba(0, 195, 255, 0.15);
+    border-color: var(--neon-blue);
+    transform: translateY(-2px);
+}
+
+/* 聊天區域樣式 */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    background: rgba(20, 20, 30, 0.8);
+    border: 1px solid var(--neon-blue);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 195, 255, 0.2);
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.message {
+    display: flex;
+    gap: 1rem;
+    max-width: 80%;
+}
+
+.coach-message {
+    align-self: flex-start;
+}
+
+.user-message {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    padding: 2px;
+    flex-shrink: 0;
+}
+
+.message-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #1a1a2e;
+}
+
+.user-message .message-avatar {
+    background: linear-gradient(45deg, var(--neon-purple), var(--accent-color));
+}
+
+.message-content {
+    background: rgba(30, 30, 45, 0.8);
+    border-radius: 8px;
+    padding: 1rem;
+    position: relative;
+}
+
+.coach-message .message-content {
+    border-left: 3px solid var(--neon-blue);
+}
+
+.user-message .message-content {
+    border-right: 3px solid var(--neon-purple);
+    text-align: right;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.message-sender {
+    font-weight: 600;
+}
+
+.coach-message .message-sender {
+    color: var(--neon-blue);
+}
+
+.user-message .message-sender {
+    color: var(--neon-purple);
+}
+
+.message-time {
+    color: var(--text-secondary);
+}
+
+.message-text {
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+.message-text p {
+    margin-bottom: 0.75rem;
+}
+
+.message-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* 輸入區域樣式 */
+.chat-input {
+    display: flex;
+    padding: 1rem;
+    background: rgba(30, 30, 45, 0.9);
+    border-top: 1px solid var(--dark-accent);
+    gap: 0.75rem;
+}
+
+.chat-input textarea {
+    flex: 1;
+    background: rgba(20, 20, 30, 0.8);
+    border: 1px solid var(--dark-accent);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    color: var(--text-color);
+    resize: none;
+    height: 50px;
+    font-family: 'Rajdhani', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.chat-input textarea:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 10px rgba(0, 195, 255, 0.3);
+}
+
+.chat-input button {
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+    color: white;
+    border: none;
+    border-radius: 6px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.chat-input button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 195, 255, 0.4);
+}
+
+.chat-input button i {
+    font-size: 1.2rem;
+}
+
+/* AI思考中動畫 */
+.thinking-indicator {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(20, 20, 30, 0.9);
+    border: 1px solid var(--neon-blue);
+    border-radius: 30px;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 0 15px rgba(0, 195, 255, 0.3);
+    z-index: 1000;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.thinking-indicator.active {
+    display: flex;
+}
+
+.thinking-dots {
+    display: flex;
+    gap: 5px;
+}
+
+.thinking-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--neon-blue);
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.thinking-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.thinking-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.thinking-indicator p {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .coach-container {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    
+    .chat-container {
+        height: 500px;
+    }
+    
+    .message {
+        max-width: 90%;
+    }
+}
