@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoFit.ai - AI教練</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/coach.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- 導航欄 -->
+        <nav class="nav-bar">
+            <div class="logo">NeoFit<span class="accent">.ai</span></div>
+            <div class="nav-links">
+                <a href="index.html" data-page="dashboard">儀表板</a>
+                <a href="workouts.html" data-page="workout">運動</a>
+                <a href="meals.html" data-page="meals">餐食</a>
+                <a href="coach.html" class="active" data-page="coach">AI教練</a>
+                <a href="achievements.html" data-page="achievements">成就</a>
+            </div>
+            <div class="user-profile">
+                <div class="theme-switcher">
+                    <button class="theme-btn" id="theme-toggle"></button>
+                    <div class="theme-options" id="theme-options">
+                        <div class="theme-option" data-theme="blue">
+                            <div class="color-preview"></div>
+                            <span>藍色主題</span>
+                        </div>
+                        <div class="theme-option" data-theme="red">
+                            <div class="color-preview"></div>
+                            <span>紅色主題</span>
+                        </div>
+                        <div class="theme-option" data-theme="green">
+                            <div class="color-preview"></div>
+                            <span>綠色主題</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 主要內容區域 -->
+        <main class="content">
+            <section id="coach" class="page active">
+                <h1>您的 <span class="neon-text">NeoFit</span> AI 教練</h1>
+                
+                <div class="coach-container">
+                    <div class="coach-sidebar">
+                        <div class="coach-profile">
+                            <div class="coach-avatar">
+                                <img src="images/neo-coach.png" alt="NEO 教練" id="coach-avatar">
+                            </div>
+                            <h3>NEO</h3>
+                            <p>您的個人化AI健身顧問，隨時為您提供專業建議和支持。</p>
+                        </div>
+                        
+                        <div class="coach-topics">
+                            <h4>熱門話題</h4>
+                            <div class="topic-list">
+                                <button class="topic-btn" data-topic="workout">推薦適合我的運動</button>
+                                <button class="topic-btn" data-topic="nutrition">分析我的飲食習慣</button>
+                                <button class="topic-btn" data-topic="progress">查看我的進度報告</button>
+                                <button class="topic-btn" data-topic="motivation">需要一些激勵</button>
+                                <button class="topic-btn" data-topic="tips">健身小貼士</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chat-messages">
+                            <!-- 歡迎消息 -->
+                            <div class="message coach-message">
+                                <div class="message-avatar">
+                                    <img src="images/ai-coach.svg" alt="AI教練">
+                                </div>
+                                <div class="message-content">
+                                    <div class="message-header">
+                                        <span class="message-sender">NEO</span>
+                                        <span class="message-time">剛剛</span>
+                                    </div>
+                                    <div class="message-text">
+                                        <p>嗨！我是NEO，您的個人健身AI教練。我會幫助您達成健身目標，回答您的問題，並提供個性化的建議。</p>
+                                        <p>您今天想談些什麼？可以問我關於運動、營養、進度追蹤或任何健身相關的問題。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input">
+                            <textarea id="user-message" placeholder="輸入您的問題或選擇上方的熱門話題..."></textarea>
+                            <button id="send-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- AI思考中動畫 -->
+    <div class="thinking-indicator" id="thinking-indicator">
+        <div class="thinking-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <p>NEO正在思考...</p>
+    </div>
+
+    <script src="js/coach.js"></script>
+</body>
+</html>

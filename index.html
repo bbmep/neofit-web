@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeoFit 控制台</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script defer src="./js/app.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Rajdhani:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <nav class="nav-bar">
+        <div class="logo">NeoFit.<span class="accent">ai</span></div>
+        <div class="nav-links">
+          <a href="index.html" class="active">儀表板</a>
+          <a href="workouts.html">健身</a>
+          <a href="meals.html">餐食</a>
+          <a href="coach.html">AI教練</a>
+          <a href="achievements.html">成就</a>
+        </div>
+        <div class="user-profile">
+          <div class="theme-switcher">
+            <button class="theme-btn" id="theme-toggle"></button>
+            <div class="theme-options" id="theme-options">
+              <div class="theme-option" data-theme="blue">
+                <div class="color-preview"></div>
+                <span>藍色主題</span>
+              </div>
+              <div class="theme-option" data-theme="red">
+                <div class="color-preview"></div>
+                <span>紅色主題</span>
+              </div>
+              <div class="theme-option" data-theme="green">
+                <div class="color-preview"></div>
+                <span>綠色主題</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- 個人資料設定頁面 -->
+    <main class="content page" id="profile-setup">
+      <section class="profile-setup-container">
+        <h1>設定您的 <span class="neon-text">NeoFit</span> 個人資料</h1>
+        
+        <form id="profile-form" class="profile-form">
+          <div class="form-section">
+            <h2>基本資料 <span class="required">*必填</span></h2>
+            <div class="form-group">
+              <label for="user-name">姓名 <span class="required">*</span></label>
+              <input type="text" id="user-name" required>
+            </div>
+            <div class="form-group">
+              <label for="user-height">身高 (cm) <span class="required">*</span></label>
+              <input type="number" id="user-height" min="100" max="250" required>
+            </div>
+            <div class="form-group">
+              <label for="user-weight">體重 (kg) <span class="required">*</span></label>
+              <input type="number" id="user-weight" min="30" max="200" required>
+            </div>
+          </div>
+          
+          <div class="form-section">
+            <h2>健身目標 <span class="required">*必填</span></h2>
+            <div class="goal-selector">
+              <div class="goal-option">
+                <input type="radio" id="goal-weight-loss" name="fitness-goal" value="weight-loss" required>
+                <label for="goal-weight-loss">
+                  <div class="goal-icon">🔥</div>
+                  <h3>減重</h3>
+                </label>
+              </div>
+              <div class="goal-option">
+                <input type="radio" id="goal-muscle" name="fitness-goal" value="muscle">
+                <label for="goal-muscle">
+                  <div class="goal-icon">💪</div>
+                  <h3>增肌</h3>
+                </label>
+              </div>
+              <div class="goal-option">
+                <input type="radio" id="goal-endurance" name="fitness-goal" value="endurance">
+                <label for="goal-endurance">
+                  <div class="goal-icon">🏃</div>
+                  <h3>耐力</h3>
+                </label>
+              </div>
+              <div class="goal-option">
+                <input type="radio" id="goal-flexibility" name="fitness-goal" value="flexibility">
+                <label for="goal-flexibility">
+                  <div class="goal-icon">🧘</div>
+                  <h3>柔韌性</h3>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" class="btn submit-btn">開始我的健身旅程</button>
+          </div>
+        </form>
+      </section>
+    </main>
+    
+    <!-- 儀表板頁面 -->
+    <main class="content page" id="dashboard">
+      <!-- 21 天挑戰進度區塊 -->
+      <section class="challenge-tracker">
+        <h2 class="neon-text">21 天挑戰進度</h2>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress" id="progress-bar" style="width: 0%;"></div>
+          </div>
+          <div class="day-counter">已完成 <span id="completed-days">0</span> / 21 天</div>
+        </div>
+      </section>
+
+      <!-- 今日任務 -->
+      <section>
+        <h2 class="neon-text">🎯 今日任務</h2>
+        <div class="task-cards">
+          <!-- 運動任務 -->
+          <div class="task-card" id="workout-task">
+            <div class="task-icon large-icon">💪</div>
+            <h3>完成運動</h3>
+            <p>今日重點：全身訓練</p>
+            <a href="workouts.html" class="btn task-btn">開始運動</a>
+          </div>
+
+          <!-- 餐食記錄 -->
+          <div class="task-card">
+            <div class="task-icon large-icon">🍱</div>
+            <h3>紀錄餐食</h3>
+            <p>拍下您的餐點</p>
+            <a href="meals.html" class="btn task-btn">紀錄餐食</a>
+          </div>
+
+          <!-- AI 教練 -->
+          <div class="task-card">
+            <div class="task-icon large-icon">🤖</div>
+            <h3>AI 教練諮詢</h3>
+            <p>獲得飲食或訓練建議</p>
+            <a href="coach.html" class="btn task-btn">與教練對話</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

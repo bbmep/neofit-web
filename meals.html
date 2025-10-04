@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoFit.ai - 餐食記錄</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/meals.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- 導航欄 -->
+        <nav class="nav-bar">
+            <div class="logo">NeoFit<span class="accent">.ai</span></div>
+            <div class="nav-links">
+                <a href="index.html" data-page="dashboard">儀表板</a>
+                <a href="workouts.html" data-page="workout">運動</a>
+                <a href="meals.html" class="active" data-page="meals">餐食</a>
+                <a href="coach.html" data-page="coach">AI教練</a>
+                <a href="achievements.html" data-page="achievements">成就</a>
+            </div>
+            <div class="user-profile">
+                <div class="avatar"></div>
+            </div>
+        </nav>
+
+        <!-- 主要內容區域 -->
+        <main class="content">
+            <section id="meals" class="page active">
+                <h1>您的 <span class="neon-text">NeoFit</span> 餐食記錄</h1>
+                
+                <div class="meal-container">
+                    <div class="meal-logger">
+                        <h2>記錄今日餐食</h2>
+                        <div class="meal-form">
+                            <div class="form-group">
+                                <label>餐食類型</label>
+                                <div class="meal-type-selector">
+                                    <button class="meal-type-btn" data-type="breakfast">
+                                        <i class="fas fa-coffee"></i>
+                                        <span>早餐</span>
+                                    </button>
+                                    <button class="meal-type-btn" data-type="lunch">
+                                        <i class="fas fa-hamburger"></i>
+                                        <span>午餐</span>
+                                    </button>
+                                    <button class="meal-type-btn" data-type="dinner">
+                                        <i class="fas fa-utensils"></i>
+                                        <span>晚餐</span>
+                                    </button>
+                                    <button class="meal-type-btn" data-type="snack">
+                                        <i class="fas fa-cookie"></i>
+                                        <span>點心</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>上傳餐食照片</label>
+                                <div class="photo-upload-container">
+                                    <div class="photo-preview">
+                                        <img id="meal-preview" src="#" alt="餐食預覽" style="display: none;">
+                                        <div class="upload-placeholder" id="upload-placeholder">
+                                            <i class="fas fa-camera"></i>
+                                            <p>點擊上傳照片</p>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="meal-photo" accept="image/*" style="display: none;">
+                                    <button type="button" class="btn photo-btn" id="upload-btn">選擇照片</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="meal-notes">備註（可選）</label>
+                                <textarea id="meal-notes" placeholder="例如：米飯、雞肉、蔬菜"></textarea>
+                            </div>
+                            
+                            <button type="button" class="btn analyze-btn" id="analyze-btn" disabled>
+                                <i class="fas fa-robot"></i> AI 分析餐食
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="meal-analysis" id="meal-analysis">
+                        <h2>AI 分析結果</h2>
+                        <div class="analysis-placeholder" id="analysis-placeholder">
+                            <i class="fas fa-brain"></i>
+                            <p>上傳照片並點擊分析按鈕以獲取結果</p>
+                        </div>
+                        
+                        <div class="analysis-results" id="analysis-results" style="display: none;">
+                            <div class="result-card">
+                                <h3>估計卡路里</h3>
+                                <div class="calories-display">
+                                    <span id="calories-value">--</span>
+                                    <span class="unit">kcal</span>
+                                </div>
+                            </div>
+                            
+                            <div class="result-card">
+                                <h3>營養成分</h3>
+                                <div class="macros">
+                                    <div class="macro-item">
+                                        <span class="macro-label">蛋白質</span>
+                                        <div class="macro-bar-container">
+                                            <div class="macro-bar protein-bar" id="protein-bar" style="width: 0%"></div>
+                                        </div>
+                                        <span class="macro-value" id="protein-value">--</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">碳水化合物</span>
+                                        <div class="macro-bar-container">
+                                            <div class="macro-bar carbs-bar" id="carbs-bar" style="width: 0%"></div>
+                                        </div>
+                                        <span class="macro-value" id="carbs-value">--</span>
+                                    </div>
+                                    <div class="macro-item">
+                                        <span class="macro-label">脂肪</span>
+                                        <div class="macro-bar-container">
+                                            <div class="macro-bar fat-bar" id="fat-bar" style="width: 0%"></div>
+                                        </div>
+                                        <span class="macro-value" id="fat-value">--</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="result-card">
+                                <h3>AI 反饋</h3>
+                                <div class="ai-feedback" id="ai-feedback">
+                                    <!-- AI 反饋將在這裡顯示 -->
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="btn save-btn" id="save-btn">
+                                <i class="fas fa-save"></i> 保存記錄
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="meal-history">
+                    <h2>餐食歷史</h2>
+                    <div class="history-container" id="meal-history-container">
+                        <!-- 餐食歷史記錄將在這裡顯示 -->
+                        <div class="empty-history" id="empty-history">
+                            <i class="fas fa-history"></i>
+                            <p>尚無餐食記錄</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- AI 分析加載模態框 -->
+    <div class="modal" id="loading-modal">
+        <div class="modal-content loading-content">
+            <div class="loading-animation">
+                <div class="cyber-spinner"></div>
+            </div>
+            <h3>AI 正在分析您的餐食...</h3>
+            <p>這可能需要幾秒鐘時間</p>
+        </div>
+    </div>
+
+    <script src="js/meals.js"></script>
+</body>
+</html>

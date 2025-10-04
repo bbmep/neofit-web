@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoFit.ai - 21天習慣挑戰</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/challenge.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- 導航欄 -->
+        <nav class="nav-bar">
+            <div class="logo">NeoFit<span class="accent">.ai</span></div>
+            <div class="nav-links">
+                <a href="index.html" data-page="dashboard">儀表板</a>
+                <a href="workouts.html" data-page="workout">運動</a>
+                <a href="meals.html" data-page="meals">餐食</a>
+                <a href="coach.html" data-page="coach">AI教練</a>
+                <a href="challenge.html" class="active" data-page="challenge">21天挑戰</a>
+                <a href="#" data-page="achievements">成就</a>
+            </div>
+            <div class="user-profile">
+                <div class="avatar"></div>
+            </div>
+        </nav>
+
+        <!-- 主要內容區域 -->
+        <main class="content">
+            <section id="challenge" class="page active">
+                <h1>您的 <span class="neon-text">NeoFit</span> 21天習慣挑戰</h1>
+                
+                <div class="challenge-overview">
+                    <div class="challenge-header">
+                        <div class="challenge-info">
+                            <h2>健康生活習慣養成計劃</h2>
+                            <p>連續21天完成每日任務，建立持久的健康習慣</p>
+                        </div>
+                        <div class="challenge-stats">
+                            <div class="stat-item">
+                                <span class="stat-value" id="current-day">0</span>
+                                <span class="stat-label">當前天數</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" id="streak-count">0</span>
+                                <span class="stat-label">連續天數</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" id="completion-rate">0%</span>
+                                <span class="stat-label">完成率</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="challenge-progress">
+                        <div class="progress-container">
+                            <div class="day-markers">
+                                <div class="milestone" style="left: 33%">7</div>
+                                <div class="milestone" style="left: 66%">14</div>
+                                <div class="milestone" style="right: 0">21</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" id="challenge-progress-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="day-circles-container">
+                            <div class="day-circles" id="day-circles">
+                                <!-- 日期圓圈將由JavaScript動態生成 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="challenge-details">
+                    <div class="today-tasks">
+                        <h2>今日任務</h2>
+                        <div class="task-list" id="today-task-list">
+                            <div class="task-item" data-task="workout">
+                                <div class="task-check">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="task-content">
+                                    <h3>完成運動</h3>
+                                    <p>至少進行20分鐘的運動</p>
+                                </div>
+                                <div class="task-status pending">
+                                    <span>待完成</span>
+                                </div>
+                            </div>
+                            
+                            <div class="task-item" data-task="meal_logged">
+                                <div class="task-check">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="task-content">
+                                    <h3>記錄餐食</h3>
+                                    <p>拍攝並分析至少一餐</p>
+                                </div>
+                                <div class="task-status pending">
+                                    <span>待完成</span>
+                                </div>
+                            </div>
+                            
+                            <div class="task-item" data-task="coach_interaction">
+                                <div class="task-check">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="task-content">
+                                    <h3>與AI教練交流</h3>
+                                    <p>獲取個性化建議</p>
+                                </div>
+                                <div class="task-status pending">
+                                    <span>待完成</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="challenge-calendar">
+                        <h2>挑戰日曆</h2>
+                        <div class="calendar-view">
+                            <div class="calendar-header">
+                                <button id="prev-month" class="calendar-nav-btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <h3 id="calendar-month">2023年10月</h3>
+                                <button id="next-month" class="calendar-nav-btn">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="calendar-grid">
+                                <div class="calendar-weekdays">
+                                    <div>日</div>
+                                    <div>一</div>
+                                    <div>二</div>
+                                    <div>三</div>
+                                    <div>四</div>
+                                    <div>五</div>
+                                    <div>六</div>
+                                </div>
+                                
+                                <div class="calendar-days" id="calendar-days">
+                                    <!-- 日曆日期將由JavaScript動態生成 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="challenge-rewards">
+                    <h2>挑戰獎勵</h2>
+                    <div class="rewards-container">
+                        <div class="reward-item" data-days="7">
+                            <div class="reward-icon">
+                                <i class="fas fa-medal"></i>
+                                <span class="days-required">7</span>
+                            </div>
+                            <div class="reward-info">
+                                <h3>第一週完成</h3>
+                                <p>解鎖基礎成就徽章</p>
+                            </div>
+                            <div class="reward-status locked">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="reward-item" data-days="14">
+                            <div class="reward-icon">
+                                <i class="fas fa-trophy"></i>
+                                <span class="days-required">14</span>
+                            </div>
+                            <div class="reward-info">
+                                <h3>第二週完成</h3>
+                                <p>解鎖進階訓練計劃</p>
+                            </div>
+                            <div class="reward-status locked">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="reward-item" data-days="21">
+                            <div class="reward-icon">
+                                <i class="fas fa-award"></i>
+                                <span class="days-required">21</span>
+                            </div>
+                            <div class="reward-info">
+                                <h3>挑戰完成</h3>
+                                <p>解鎖專屬主題和高級功能</p>
+                            </div>
+                            <div class="reward-status locked">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 日期詳情模態框 -->
+    <div class="modal" id="day-detail-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-date">2023年10月1日</h3>
+                <button class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="day-tasks" id="modal-tasks">
+                    <!-- 任務詳情將由JavaScript動態生成 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/challenge.js"></script>
+</body>
+</html>

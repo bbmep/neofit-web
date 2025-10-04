@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoFit.ai - 成就與統計</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/achievements.css">
+    <link rel="stylesheet" href="css/training-plan.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- 導航欄 -->
+        <nav class="nav-bar">
+            <div class="logo">NeoFit<span class="accent">.ai</span></div>
+            <div class="nav-links">
+                <a href="index.html" data-page="dashboard">儀表板</a>
+                <a href="workouts.html" data-page="workout">運動</a>
+                <a href="meals.html" data-page="meals">餐食</a>
+                <a href="coach.html" data-page="coach">AI教練</a>
+                <a href="achievements.html" class="active" data-page="achievements">成就</a>
+            </div>
+            <div class="user-profile">
+                <div class="avatar"></div>
+            </div>
+        </nav>
+
+        <!-- 主要內容區域 -->
+        <main class="content">
+            <section id="achievements" class="page active">
+                <h1>您的 <span class="neon-text">NeoFit</span> 成就</h1>
+                
+                <div class="page-header">
+                    <p>追蹤你的健身旅程，慶祝每一個里程碑</p>
+                </div>
+
+        <!-- 成就概覽 -->
+        <section class="achievements-overview">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>連續天數</h3>
+                        <div class="stat-value" id="streak-count">0</div>
+                        <div class="stat-label">天</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>健身次數</h3>
+                        <div class="stat-value" id="workout-count">0</div>
+                        <div class="stat-label">次</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>記錄餐食</h3>
+                        <div class="stat-value" id="meal-count">0</div>
+                        <div class="stat-label">餐</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>獲得成就</h3>
+                        <div class="stat-value" id="achievement-count">0</div>
+                        <div class="stat-label">個</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 數據視覺化 -->
+        <section class="data-visualization">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h2>活動趨勢</h2>
+                    <div class="chart-controls">
+                        <button class="chart-control-btn active" data-period="week">週</button>
+                        <button class="chart-control-btn" data-period="month">月</button>
+                        <button class="chart-control-btn" data-period="year">年</button>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="activity-chart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 使用者資訊展示 -->
+        <section class="user-info-section">
+            <div class="section-header">
+                <h2>使用者資訊</h2>
+                <p>您的健身檔案與進度追蹤</p>
+            </div>
+            
+            <div class="user-profile">
+                <div class="profile-avatar">
+                    <img src="images/avatar.png" alt="使用者頭像">
+                </div>
+                <div class="profile-details">
+                    <h3 id="user-name">健身愛好者</h3>
+                    <p id="user-level">等級: <span>初級健身者</span></p>
+                    <p id="user-joined">加入日期: <span>2023年10月15日</span></p>
+                    <div class="user-stats">
+                        <div class="stat-item">
+                            <span class="stat-value" id="total-workouts">0</span>
+                            <span class="stat-label">總訓練次數</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="total-calories">0</span>
+                            <span class="stat-label">總消耗卡路里</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="total-minutes">0</span>
+                            <span class="stat-label">總訓練時間(分)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fitness-progress">
+                <h3>健身進度</h3>
+                <div class="progress-bars">
+                    <div class="progress-item">
+                        <span class="progress-label">力量訓練</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                        <span class="progress-value">65%</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="progress-label">有氧訓練</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 40%"></div>
+                        </div>
+                        <span class="progress-value">40%</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="progress-label">柔韌性</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 30%"></div>
+                        </div>
+                        <span class="progress-value">30%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 成就徽章 -->
+        <section class="achievements-badges">
+            <h2>成就徽章</h2>
+            <div class="badges-grid">
+                <!-- 連續登入成就 -->
+                <div class="badge-category">
+                    <h3>連續登入</h3>
+                    <div class="badges-row">
+                        <div class="badge-item" data-badge-id="streak_3">
+                            <div class="badge-icon">
+                                <i class="fas fa-calendar-check"></i>
+                                <div class="badge-level">3</div>
+                            </div>
+                            <div class="badge-info">
+                                <h4>初學者</h4>
+                                <p>連續登入3天</p>
+                            </div>
+                        </div>
+                        <div class="badge-item locked" data-badge-id="streak_7">
+                            <div class="badge-icon">
+                                <i class="fas fa-calendar-check"></i>
+                                <div class="badge-level">7</div>
+                            </div>
+                            <div class="badge-info">
+                                <h4>堅持一週</h4>
+                                <p>連續登入7天</p>
+                            </div>
+                        </div>
+                        <div class="badge-item locked" data-badge-id="streak_30">
+                            <div class="badge-icon">
+                                <i class="fas fa-calendar-check"></i>
+                                <div class="badge-level">30</div>
+                            </div>
+                            <div class="badge-info">
+                                <h4>月度達人</h4>
+                                <p>連續登入30天</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 健身成就 -->
+                <div class="badge-category">
+                    <h3>健身成就</h3>
+                    <div class="badges-row">
+                        <div class="badge-item" data-badge-id="workout_5">
+                            <div class="badge-icon">
+                                <i class="fas fa-dumbbell"></i>
+                                <div class="badge-level">5</div>
+                            </div>
+                            <div class="badge-info">
+                                <h4>健身新手</h4>
+                                <p>完成5次健身</p>
+                            </div>
+                        </div>
+                        <div class="badge-item locked" data-badge-id="workout_20">
+                            <div class="badge-icon">
+                                <i class="fas fa-dumbbell"></i>
+                                <div class="badge-level">20</div>
+                            </div>
+                            <div class="badge-info">
+                                <h4>健身愛好者</h4>
+                                <p>完成20次健身</p>
+                            </div>
+                        </div>
+                        <div class="badge-item locked" data-badge-id="workout_50">
+                            <div class="badge-icon">
+                                <i class="fas fa-dumbbell"></i>
+                                <div class="badge-level">50</div>
+                            </div>
+                            <div class="badge-info">
+                                <h4>健身達人</h4>
+                                <p>完成50次健身</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 餐食記錄成就 -->
+                <div class="badge-category">
+                    <h3>餐食記錄</h3>
+                    <div class="badges-row">
+                        <div class="badge-item" data-badge-id="meal_10">
+                            <div class="badge-icon">
+                                <i class="fas fa-utensils"></i>
+                                <div class="badge-level">10</div>
+                            </div>
+                            <div class="badge-info">
+                                <h4>飲食追蹤者</h4>
+                                <p>記錄10餐</p>
+                            </div>
+                        </div>
+                        <div class="badge-item locked" data-badge-id="meal_30">
+                            <div class="badge-icon">
+                                <i class="fas fa-utensils"></i>
+                                <div class="badge-level">30</div>
+                            </div>
+                            <div class="badge-info">
+                                <h4>營養專家</h4>
+                                <p>記錄30餐</p>
+                            </div>
+                        </div>
+                        <div class="badge-item locked" data-badge-id="meal_100">
+                            <div class="badge-icon">
+                                <i class="fas fa-utensils"></i>
+                                <div class="badge-level">100</div>
+                            </div>
+                            <div class="badge-info">
+                                <h4>飲食大師</h4>
+                                <p>記錄100餐</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 挑戰成就 -->
+                <div class="badge-category">
+                    <h3>挑戰成就</h3>
+                    <div class="badges-row">
+                        <div class="badge-item" data-badge-id="challenge_7">
+                            <div class="badge-icon">
+                                <i class="fas fa-fire"></i>
+                                <div class="badge-level">7</div>
+                            </div>
+                            <div class="badge-info">
+                                <h4>挑戰者</h4>
+                                <p>完成7天挑戰</p>
+                            </div>
+                        </div>
+                        <div class="badge-item locked" data-badge-id="challenge_14">
+                            <div class="badge-icon">
+                                <i class="fas fa-fire"></i>
+                                <div class="badge-level">14</div>
+                            </div>
+                            <div class="badge-info">
+                                <h4>半程達人</h4>
+                                <p>完成14天挑戰</p>
+                            </div>
+                        </div>
+                        <div class="badge-item locked" data-badge-id="challenge_21">
+                            <div class="badge-icon">
+                                <i class="fas fa-fire"></i>
+                                <div class="badge-level">21</div>
+                            </div>
+                            <div class="badge-info">
+                                <h4>習慣養成</h4>
+                                <p>完成21天挑戰</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 健身數據 -->
+        <section class="fitness-data">
+            <div class="fitness-header">
+                <h2>健身數據</h2>
+                <div class="fitness-controls">
+                    <button class="fitness-control-btn active" data-type="calories">卡路里</button>
+                    <button class="fitness-control-btn" data-type="time">時間</button>
+                    <button class="fitness-control-btn" data-type="workouts">類型</button>
+                </div>
+            </div>
+            <div class="fitness-charts">
+                <div class="fitness-chart-container active" id="calories-chart-container">
+                    <canvas id="calories-chart"></canvas>
+                </div>
+                <div class="fitness-chart-container" id="time-chart-container">
+                    <canvas id="time-chart"></canvas>
+                </div>
+                <div class="fitness-chart-container" id="workouts-chart-container">
+                    <canvas id="workouts-chart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- 營養數據 -->
+        <section class="nutrition-data">
+            <div class="nutrition-header">
+                <h2>營養數據</h2>
+                <div class="nutrition-controls">
+                    <button class="nutrition-control-btn active" data-type="macros">宏量營養素</button>
+                    <button class="nutrition-control-btn" data-type="calories">卡路里趨勢</button>
+                </div>
+            </div>
+            <div class="nutrition-charts">
+                <div class="nutrition-chart-container active" id="macros-chart-container">
+                    <canvas id="macros-chart"></canvas>
+                </div>
+                <div class="nutrition-chart-container" id="nutrition-calories-chart-container">
+                    <canvas id="nutrition-calories-chart"></canvas>
+                </div>
+        </section>
+    </main>
+</div>
+
+    <script src="js/achievements.js"></script>
+</body>
+</html>

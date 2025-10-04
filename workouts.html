@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoFit.ai - 健身訓練</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/workouts.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/training-plan.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="js/workouts.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="nav-bar">
+            <div class="logo">NeoFit<span class="accent">.ai</span></div>
+            <div class="nav-links">
+                <a href="index.html" data-page="dashboard">儀表板</a>
+                <a href="#" class="active" data-page="workout">健身</a>
+                <a href="meals.html" data-page="meals">餐食</a>
+                <a href="coach.html" data-page="coach">AI教練</a>
+                <a href="achievements.html" data-page="achievements">成就</a>
+            </div>
+            <div class="user-profile">
+                <div class="theme-switcher">
+                    <button class="theme-btn" id="theme-toggle"></button>
+                    <div class="theme-options" id="theme-options">
+                        <div class="theme-option" data-theme="blue">
+                            <div class="color-preview"></div>
+                            <span>藍色主題</span>
+                        </div>
+                        <div class="theme-option" data-theme="red">
+                            <div class="color-preview"></div>
+                            <span>紅色主題</span>
+                        </div>
+                        <div class="theme-option" data-theme="green">
+                            <div class="color-preview"></div>
+                            <span>綠色主題</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="content">
+            <section id="workouts" class="page active">
+                <h1>Your <span class="neon-text">NeoFit</span> Workouts</h1>
+                
+                <div class="workout-categories">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="cardio">Cardio</button>
+                    <button class="category-btn" data-category="strength">Strength</button>
+                    <button class="category-btn" data-category="flexibility">Flexibility</button>
+                </div>
+                
+                <div class="workout-grid">
+                    <!-- Workout Cards will be dynamically populated -->
+                </div>
+                
+                <!-- 個人化訓練計劃 -->
+                <div class="training-plan-section">
+                    <h2>個人化訓練計劃</h2>
+                    <p>根據您的個人資料生成專業的訓練計劃</p>
+                    
+                    <div class="training-form" id="training-form">
+                        <h3>輸入您的基本資料</h3>
+                        <div class="form-group">
+                            <label for="gender">性別</label>
+                            <select id="gender" required>
+                                <option value="">請選擇</option>
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">年齡</label>
+                            <input type="number" id="age" min="16" max="80" placeholder="請輸入年齡" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="height">身高 (公分)</label>
+                            <input type="number" id="height" min="140" max="220" placeholder="請輸入身高" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">體重 (公斤)</label>
+                            <input type="number" id="weight" min="40" max="150" placeholder="請輸入體重" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fitness-goal">健身目標</label>
+                            <select id="fitness-goal" required>
+                                <option value="">請選擇</option>
+                                <option value="增肌">增肌</option>
+                                <option value="減脂">減脂</option>
+                                <option value="身形雕塑">身形雕塑</option>
+                                <option value="提高體能">提高體能</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="available-time">可運動時間 (分鐘/天)</label>
+                            <input type="number" id="available-time" min="15" max="120" placeholder="請輸入可用時間" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="equipment">有無器材</label>
+                            <select id="equipment" required>
+                                <option value="">請選擇</option>
+                                <option value="自重">自重</option>
+                                <option value="啞鈴">啞鈴</option>
+                                <option value="彈力帶">彈力帶</option>
+                                <option value="全套器材">全套器材</option>
+                            </select>
+                        </div>
+                        <button id="generate-plan" class="btn-primary">生成訓練計劃</button>
+                    </div>
+                    
+                    <div class="training-result hidden" id="training-result">
+                        <div class="result-header">
+                            <h3>您的個人化訓練計劃</h3>
+                            <button class="btn-secondary" onclick="document.getElementById('training-form').scrollIntoView({behavior: 'smooth'})">修改資料</button>
+                        </div>
+                        
+                        <div class="plan-details" id="plan-details">
+                            <!-- 訓練計劃詳情將通過JavaScript動態生成 -->
+                        </div>
+                        
+                        <div class="training-record">
+                            <h4>訓練執行記錄</h4>
+                            <table id="record-table">
+                                <thead>
+                                    <tr>
+                                        <th>動作名稱</th>
+                                        <th>實際重量 (kg)</th>
+                                        <th>實際次數</th>
+                                        <th>備註</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="record-body">
+                                    <!-- 記錄表格將通過JavaScript動態生成 -->
+                                </tbody>
+                            </table>
+                            <button id="save-record" class="btn-primary">保存記錄</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Workout Detail Modal -->
+            <div class="modal" id="workout-modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <div class="workout-detail">
+                        <div class="workout-image">
+                            <img src="" alt="Workout Image">
+                        </div>
+                        <h2 class="workout-title"></h2>
+                        <div class="workout-meta">
+                            <span class="workout-duration"><i class="fas fa-clock"></i> <span class="duration-value"></span> min</span>
+                            <span class="workout-category"><i class="fas fa-tag"></i> <span class="category-value"></span></span>
+                        </div>
+                        <p class="workout-description"></p>
+                        <div class="workout-timer">
+                            <div class="timer-display">00:00</div>
+                            <div class="timer-controls">
+                                <button class="timer-btn start-btn">Start</button>
+                                <button class="timer-btn pause-btn">Pause</button>
+                                <button class="timer-btn reset-btn">Reset</button>
+                            </div>
+                        </div>
+                        <button class="btn complete-workout-btn">Complete Workout</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/workouts.js"></script>
+    <script src="js/training-plan.js"></script>
+</body>
+</html>
